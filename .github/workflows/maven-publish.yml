@@ -31,3 +31,9 @@ jobs:
       run: mvn install
       env:
         GITHUB_TOKEN: ${{ github.token }}
+  
+    - run: mkdir compiled && cp target/*.jar compiled
+    - uses: actions/upload-artifact@v4
+      with:
+        name: Package
+        path: staging
