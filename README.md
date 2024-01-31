@@ -17,3 +17,6 @@ java -jar target/olenchenko-1.0-SNAPSHOT.jar
 ## Branch pr2
 - Basic program.
 - Matrix operations.
+
+## Latest successful build
+[Latest successful build](https://nightly.link/golenchenko/java-labs-olenchenko/workflows/maven-publish/main/Package.zip) - in zip.
