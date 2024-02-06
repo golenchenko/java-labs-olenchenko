@@ -20,7 +20,6 @@ java -jar target/olenchenko-1.0-SNAPSHOT.jar
 
 ## Branch pr3
 - Basic MVC usage.
-- Matrix operations.
 
 
 ## Latest successful build
