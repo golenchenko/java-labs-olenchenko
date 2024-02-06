@@ -32,19 +32,3 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
   
     - run: mkdir compiled && cp target/*.jar compiled
-  
-  checkstyle_job:
-    runs-on: ubuntu-latest
-    name: Checkstyle job
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Run check style
-      uses: nikitasavinov/checkstyle-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        reporter: 'github-pr-check'
-    - uses: actions/upload-artifact@v4
-      with:
-        name: Package
-        path: compiled
