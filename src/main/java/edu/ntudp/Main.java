@@ -1,76 +1,82 @@
 package edu.ntudp;
 
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+
+import edu.ntudp.controller.*;
+import edu.ntudp.model.Human;
+
+import edu.ntudp.model.Sex;
 
 public class Main {
     public static void main(String[] args) {
-        Matrix matrix = new Matrix();
-        int height = matrix.getMaxHeight();
-        int width = matrix.getMaxWidth();
-        String text = """
-                Hello. What do you want?
-                0 - Create matrix: Automatically
-                1 - Create matrix: Manually
-                2 - Calculation of the geometric mean of matrix elements (last matrix)
-                3 - Display matrix
-                4 - Exit
-                """;
-        do {
-            System.out.print(text);
-            Scanner scanner = new Scanner(System.in);
-            try {
-                int val = scanner.nextInt();
-                switch (val) {
-                    case 0:
-                        System.out.println("Matrix created!");
-                        matrix.createMatrixAutomatically(width, height);
-                        break;
-                    case 1:
-                        String manuallyTextWidth = "Please type width of matrix: ";
-                        System.out.print(manuallyTextWidth);
-                        width = scanner.nextInt();
-                        String manuallyTextHeight = "Please type height of matrix: ";
-                        System.out.print(manuallyTextHeight);
-                        height = scanner.nextInt();
-                        if (width > 20 || height > 20) {
-                            System.out.println("Error: width or height of matrix must be less than 20.");
-                        }
-                        else {
-                            matrix.createMatrix(width, height);
-                        }
-                        break;
-                    case 2:
-                        String rozrahynokSerednKvadratMatrText = "Calculation of the geometric mean of matrix elements.";
-                        System.out.println(rozrahynokSerednKvadratMatrText);
-                        if (matrix.getMatrix() == null) {
-                            System.out.println("Error: matrix is null. Generate it firstly.");
-                        }
-                        else {
-                            double geometricMean = matrix.geometricMean();
-                            System.out.println("Geometric mean of matrix elements = " + geometricMean);
-                        }
-                        break;
-                    case 3:
-                        if (matrix.getMatrix() == null) {
-                            System.out.println("Error: matrix is null. Generate it firstly.");
-                        }
-                        else {
-                            System.out.println("Matrix: \n" + Arrays.deepToString(matrix.getMatrix()));
-                        }
-                        break;
-                    case 4:
-                        break;
-                    default:
-                        System.out.println("Creating matrix...");
-                        matrix.createMatrixAutomatically(width, height);
-
-                }
-            } catch (InputMismatchException e) {
-                String exc = "You must type integer value.";
-                System.out.println(exc);
-            }
-        } while (true);
+        Run.createTypicalUniversity();
     }
+
+
+    public static Human createHeadOfUniversity() {
+        Human human = new Human();
+        human.setFirstName("Азюковський");
+        human.setMiddleName("Олександр");
+        human.setLastName("Олександрович");
+        human.setSex(Sex.MALE);
+        return human;
+    }
+    public static Human createHeadOfDepartment() {
+        Human human = new Human();
+        human.setFirstName("Гнатушенко");
+        human.setMiddleName("Володимир");
+        human.setLastName("Володимирович");
+        human.setSex(Sex.MALE);
+        return human;
+    }
+    public static Human createHeadOfFaculty() {
+        Human human = new Human();
+        human.setFirstName("Удовик");
+        human.setMiddleName("Ірина");
+        human.setLastName("Михайлівна");
+        human.setSex(Sex.FEMALE);
+        return human;
+    }
+    public static Human createHeadOfGroup() {
+        Human human = new Human();
+        human.setFirstName("Квітка");
+        human.setMiddleName("Денис");
+        human.setLastName("Олександрович");
+        human.setSex(Sex.MALE);
+        return human;
+    }
+    public static Human createStudent(String firstName, String middleName, String lastName, Sex sex) {
+        Human human = new Human();
+        human.setFirstName(firstName);
+        human.setMiddleName(middleName);
+        human.setLastName(lastName);
+        human.setSex(sex);
+        return human;
+    }
+    public static class Run {
+        public static void createTypicalUniversity() {
+            Human headOfUniversity = createHeadOfUniversity();
+            String universityName = "НТУ ДП";
+            UniversityCreator universityCreator = new UniversityCreator(universityName, headOfUniversity);
+
+            Human headOfDepartment = createHeadOfDepartment();
+            String departmentName = "Інформаційні технології";
+            DepartmentCreator departmentCreator = new DepartmentCreator(universityCreator, departmentName, headOfDepartment);
+
+            Human headOfFaculty = createHeadOfFaculty();
+            String facultyName = "Інформаційні технології та комп'ютерна інженерія";
+            FacultyCreator facultyCreator = new FacultyCreator(departmentCreator, facultyName, headOfFaculty);
+
+            Human headOfGroup = createHeadOfGroup();
+            String groupName = "126-20-1";
+            GroupCreator groupCreator = new GroupCreator(facultyCreator, groupName, headOfGroup);
+
+            Human student = createStudent("Оленченко", "Георгій", "Михайлович", Sex.MALE);
+            StudentCreator studentCreator = new StudentCreator(groupCreator, student);
+
+            System.out.println(facultyCreator.getDepartmentInstance().getUniversityInstance().getUniversity().getName());
+            System.out.println(studentCreator.getGroupInstance().getGroup().getHead().getFullName());
+
+        }
+    }
+
 }
