@@ -2,31 +2,45 @@ package edu.ntudp.controller;
 
 import edu.ntudp.model.Department;
 import edu.ntudp.model.Human;
+import org.json.JSONArray;
 
-public class DepartmentCreator  {
-    private UniversityCreator university;
-    private Department department;
-    public UniversityCreator getUniversityInstance() {
-        return university;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class DepartmentCreator extends Department {
+
+    public List<FacultyCreator> getFacultyList() {
+        return facultyList;
     }
 
-    public void setUniversityInstance(UniversityCreator university) {
-        this.university = university;
+    private final List<FacultyCreator> facultyList;
+
+
+    public void addFaculty(FacultyCreator faculty) {
+        facultyList.add(faculty);
     }
 
-    public Department getDepartment() {
-        return department;
+    public DepartmentCreator(String name, Human head) {
+        setName(name);
+        setHead(head);
+        this.facultyList = new ArrayList<>();
     }
 
-    private void setDepartment(Department department) {
-        this.department = department;
-    }
+    @Override
+    public String toString() {
+        JSONArray departmentJsonArray = new JSONArray();
+        HashMap<String, Object> department = new HashMap<>();
+        HashMap<String, Object> departmentData = new HashMap<>();
 
-    public DepartmentCreator(UniversityCreator university, String departmentName, Human headOfDepartment) {
-        Department department = new Department();
-        setDepartment(department);
-        department.setName(departmentName);
-        department.setHead(headOfDepartment);
-        setUniversityInstance(university);
+        JSONArray jsonArray = new JSONArray();
+        for (FacultyCreator facultyCreator : facultyList) {
+            jsonArray.put(new JSONArray(facultyCreator.toString()).get(0));
+        }
+        departmentData.put("faculties", jsonArray);
+        departmentData.put("head", getHead());
+        department.put(getName(), departmentData);
+        departmentJsonArray.put(department);
+        return departmentJsonArray.toString();
     }
 }
