@@ -2,32 +2,42 @@ package edu.ntudp.controller;
 
 import edu.ntudp.model.Faculty;
 import edu.ntudp.model.Human;
+import org.json.JSONArray;
 
-public class FacultyCreator  {
-    private Faculty faculty;
-    private DepartmentCreator department;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-    public DepartmentCreator getDepartmentInstance() {
-        return department;
+public class FacultyCreator extends Faculty {
+    private final ArrayList<GroupCreator> groupList;
+
+    public void addGroup(GroupCreator group) {
+        groupList.add(group);
     }
 
-    public void setDepartmentInstance(DepartmentCreator department) {
-        this.department = department;
+    public ArrayList<GroupCreator> getGroupList() {
+        return this.groupList;
     }
 
-    public Faculty getFaculty() {
-        return faculty;
+    public FacultyCreator(String name, Human head) {
+        setName(name);
+        setHead(head);
+        this.groupList = new ArrayList<>();
     }
 
-    private void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
-    }
+    @Override
+    public String toString() {
+        JSONArray facultyJsonArray = new JSONArray();
+        HashMap<String, Object> faculty = new HashMap<>();
+        HashMap<String, Object> facultyData = new HashMap<>();
+        JSONArray jsonArray = new JSONArray();
+        for (GroupCreator groupCreator : groupList) {
+            jsonArray.put(new JSONArray(groupCreator.toString()).get(0));
+        }
+        facultyData.put("groups", jsonArray);
+        facultyData.put("head", getHead());
+        faculty.put(getName(), facultyData);
+        facultyJsonArray.put(faculty);
 
-    public FacultyCreator(DepartmentCreator department, String name, Human head) {
-        Faculty faculty = new Faculty();
-        setFaculty(faculty);
-        faculty.setName(name);
-        faculty.setHead(head);
-        setDepartmentInstance(department);
+        return facultyJsonArray.toString();
     }
 }

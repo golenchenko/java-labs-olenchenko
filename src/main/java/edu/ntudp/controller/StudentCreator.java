@@ -1,29 +1,33 @@
 package edu.ntudp.controller;
 
 import edu.ntudp.model.Human;
+import edu.ntudp.model.Sex;
+import edu.ntudp.model.Student;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-public class StudentCreator  {
-    private GroupCreator group;
-    private Human student;
+public class StudentCreator extends Student {
 
-    public GroupCreator getGroupInstance() {
-        return group;
+    private final Human human;
+
+    public StudentCreator(String firstName, String lastName, String middleName, Sex sex) {
+        this.human = new Human();
+        human.setFirstName(firstName);
+        human.setLastName(lastName);
+        human.setMiddleName(middleName);
+        human.setSex(sex);
     }
 
-    public void setGroupInstance(GroupCreator group) {
-        this.group = group;
+    public StudentCreator(Human human) {
+        this.human = human;
+        human.setFirstName(human.getFirstName());
+        human.setLastName(human.getLastName());
+        human.setMiddleName(human.getMiddleName());
+        human.setSex(human.getSex());
     }
 
-    public Human getStudent() {
-        return student;
-    }
-
-    private void setStudent(Human student) {
-        this.student = student;
-    }
-
-    public StudentCreator(GroupCreator group, Human student) {
-        setStudent(student);
-        setGroupInstance(group);
+    @Override
+    public String toString() {
+        return new JSONArray().put(new JSONObject(this.human)).toString();
     }
 }
