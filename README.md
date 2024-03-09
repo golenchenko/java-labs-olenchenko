@@ -20,7 +20,10 @@ java -jar target/olenchenko-4.0-SNAPSHOT.jar
 
 ## Branch pr3
 - Basic MVC usage.
-- 
+
+> [!WARNING]
+> **Branch pr3 contains code that may/contains bugs and problems with managing data. Use branch pr4 with updated code.**
+
 ## Branch pr4
 - JUnit test.
 - Writing/reading json files.
