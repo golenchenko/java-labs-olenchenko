@@ -7,7 +7,7 @@ mvn package
 ```
 Running:
 ```
-java -jar target/olenchenko-1.0-SNAPSHOT.jar
+java -jar target/olenchenko-4.0-SNAPSHOT.jar
 ```
 
 ## Branch pr1
@@ -20,6 +20,10 @@ java -jar target/olenchenko-1.0-SNAPSHOT.jar
 
 ## Branch pr3
 - Basic MVC usage.
+- 
+## Branch pr4
+- JUnit test.
+- Writing/reading json files.
 
 ## Latest successful build
 [Latest successful build](https://nightly.link/golenchenko/java-labs-olenchenko/workflows/maven-publish/main/Package.zip) - in zip.
