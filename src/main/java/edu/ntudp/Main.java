@@ -1,28 +1,37 @@
 package edu.ntudp;
 
-import org.json.JSONArray;
 
-import java.io.IOException;
+import edu.ntudp.controller.StudentController;
+import edu.ntudp.model.DatabaseModel;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class Main {
+    private static final String DB_NAME = "olenchenko";
+    private static final String DB_USER = "olenchenko";
+    private static final String DB_PASSWORD = "randompassword";
+    private static final String DB_SERVER = "127.0.0.1";
+    private static final int DB_PORT = 3307;
+    private static final String DB_TABLE = "students";
 
     public static void main(String[] args) {
-
-        Run run = new Run();
-        run.createTypicalUniversity();
-        String university = run.getUniversity();
-        JsonManager fileManager = new JsonManager();
+        DatabaseModel databaseModule = new DatabaseModel();
+        Connection connection;
         try {
-            fileManager.writeToFileJson(university);
-        } catch (IOException e) {
-            System.out.println("Error: " + e);
+            connection = databaseModule.connection(DB_SERVER, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD);
+        } catch (SQLException e) {
+            System.out.println("Database connection failed");
+            return;
         }
-
+        String date = "2003-04-08";
+        StudentController students = new StudentController(connection, DB_TABLE);
+        students.printStudentsByBirthday(date);
+        students.printStudentsByMonthBirthday(4);
         try {
-            String json = fileManager.readFromFileJson();
-            System.out.println(json.equals(university)); // true
-        } catch (IOException e) {
-            System.out.println("Error: " + e);
+            databaseModule.closeConnection(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }
