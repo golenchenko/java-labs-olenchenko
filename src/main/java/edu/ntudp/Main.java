@@ -3,7 +3,7 @@ package edu.ntudp;
 public class Main {
     public static void main(String[] args) {
 
-        String text = "Мої вітання!";
+        String text = "Hello world!";
         System.out.println(text);
     }
 }
