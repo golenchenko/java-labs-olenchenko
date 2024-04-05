@@ -1,4 +1,4 @@
-package edu.ntudp;
+package edu.ntudp.lab2;
 
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -17,10 +17,10 @@ public class Matrix {
     public int getMaxWidth() {
         return MAX_WIDTH;
     }
-    public static int getMinRange() {
+    public int getMinRange() {
         return MIN_RANGE;
     }
-    public static int getMaxRange() {
+    public int getMaxRange() {
         return MAX_RANGE;
     }
     public void setMatrix(int[][] matrix) {
@@ -65,10 +65,9 @@ public class Matrix {
                 try {
                     matrix[i][j] = scanner.nextInt();
                 } catch (InputMismatchException e) {
-                    String exception = "Error: you typed a non-integer value. Setting matrix[" + (i+1) + "][" + (j+1) + "] = 0 ...";
-                    System.out.println(exception);
                     scanner.next(); // Clear the invalid input from the scanner
                     matrix[i][j] = 0;
+                    System.out.println("Error: you typed a non-integer value. Setting matrix[" + (i+1) + "][" + (j+1) + "] = 0 ...");
                 }
             }
         }
@@ -76,7 +75,7 @@ public class Matrix {
         return matrix;
     }
 
-    public double geometricMean() {
+    public double calculateGeometricMean() {
         int [][] matrix = this.getMatrix();
         int rowCount = matrix.length;
         int colCount = matrix[0].length;

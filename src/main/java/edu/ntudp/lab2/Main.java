@@ -1,4 +1,4 @@
-package edu.ntudp;
+package edu.ntudp.lab2;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -17,22 +17,22 @@ public class Main {
                 3 - Display matrix
                 4 - Exit
                 """;
+        Scanner scanner;
+        int val;
         do {
             System.out.print(text);
-            Scanner scanner = new Scanner(System.in);
+            scanner = new Scanner(System.in);
             try {
-                int val = scanner.nextInt();
+                val = scanner.nextInt();
                 switch (val) {
                     case 0:
                         System.out.println("Matrix created!");
                         matrix.createMatrixAutomatically(width, height);
                         break;
                     case 1:
-                        String manuallyTextWidth = "Please type width of matrix: ";
-                        System.out.print(manuallyTextWidth);
+                        System.out.print("Please type width of matrix: ");
                         width = scanner.nextInt();
-                        String manuallyTextHeight = "Please type height of matrix: ";
-                        System.out.print(manuallyTextHeight);
+                        System.out.print("Please type height of matrix: ");
                         height = scanner.nextInt();
                         if (width > 20 || height > 20) {
                             System.out.println("Error: width or height of matrix must be less than 20.");
@@ -42,14 +42,12 @@ public class Main {
                         }
                         break;
                     case 2:
-                        String rozrahynokSerednKvadratMatrText = "Calculation of the geometric mean of matrix elements.";
-                        System.out.println(rozrahynokSerednKvadratMatrText);
+                        System.out.println("Calculation of the geometric mean of matrix elements.");
                         if (matrix.getMatrix() == null) {
                             System.out.println("Error: matrix is null. Generate it firstly.");
                         }
                         else {
-                            double geometricMean = matrix.geometricMean();
-                            System.out.println("Geometric mean of matrix elements = " + geometricMean);
+                            System.out.println("Geometric mean of matrix elements = " + matrix.calculateGeometricMean());
                         }
                         break;
                     case 3:
@@ -65,11 +63,9 @@ public class Main {
                     default:
                         System.out.println("Creating matrix...");
                         matrix.createMatrixAutomatically(width, height);
-
                 }
             } catch (InputMismatchException e) {
-                String exc = "You must type integer value.";
-                System.out.println(exc);
+                System.out.println("You must type integer value.");
             }
         } while (true);
     }
