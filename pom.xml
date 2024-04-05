@@ -47,7 +47,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        edu.ntudp.Main
+                                        edu.ntudp.lab5.Main
                                     </mainClass>
                                 </manifest>
                             </archive>

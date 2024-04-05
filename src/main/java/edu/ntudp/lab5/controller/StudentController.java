@@ -1,4 +1,4 @@
-package edu.ntudp.controller;
+package edu.ntudp.lab5.controller;
 
 import java.sql.*;
 

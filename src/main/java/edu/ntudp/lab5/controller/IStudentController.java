@@ -1,4 +1,4 @@
-package edu.ntudp.controller;
+package edu.ntudp.lab5.controller;
 
 public interface IStudentController {
     void printStudentsByMonthBirthday(int month);
