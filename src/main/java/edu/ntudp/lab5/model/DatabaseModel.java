@@ -1,4 +1,4 @@
-package edu.ntudp.model;
+package edu.ntudp.lab5.model;
 
 
 import java.sql.Connection;

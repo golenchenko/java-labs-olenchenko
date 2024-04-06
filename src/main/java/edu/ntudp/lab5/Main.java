@@ -1,8 +1,8 @@
-package edu.ntudp;
+package edu.ntudp.lab5;
 
 
-import edu.ntudp.controller.StudentController;
-import edu.ntudp.model.DatabaseModel;
+import edu.ntudp.lab5.controller.StudentController;
+import edu.ntudp.lab5.model.DatabaseModel;
 
 import java.sql.Connection;
 import java.sql.SQLException;
