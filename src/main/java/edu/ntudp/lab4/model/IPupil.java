@@ -1,4 +1,4 @@
-package edu.ntudp.model;
+package edu.ntudp.lab4.model;
 
 public interface IPupil {
 
