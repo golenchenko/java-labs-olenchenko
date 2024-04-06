@@ -2,6 +2,7 @@ package edu.ntudp.lab3;
 
 import edu.ntudp.lab3.controller.*;
 import edu.ntudp.lab3.model.*;
+import edu.ntudp.lab3.model.Human;
 
 import java.util.ArrayList;
 

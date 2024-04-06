@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/main/java/edu/ntudp/lab3/model/Human.java
 package edu.ntudp.lab3.model;
-========
-package edu.ntudp.lab4.model;
->>>>>>>> pr4:src/main/java/edu/ntudp/lab4/model/Human.java
 
 public class Human {
     private String firstName;
