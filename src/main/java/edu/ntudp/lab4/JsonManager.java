@@ -30,12 +30,5 @@ public class JsonManager{
     public <T> String toString(T obj) {
         return new Gson().toJson(obj);
     }
-//    public void writeToFileJson(Object value, String filePath) throws IOException {
-//        new Gson().toJson(value, new FileWriter("./"+filePath+".json"));
-//    }
-//    public <T> T readFromFileJson(String filePath, Class<T> classname) throws IOException {
-//        JsonReader reader = new JsonReader(new FileReader(filePath));
-//        return new Gson().fromJson(reader, classname);
-//    }
 
 }
