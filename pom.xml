@@ -22,7 +22,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>edu.ntudp.Main</mainClass>
+                            <mainClass>edu.ntudp.lab3.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
