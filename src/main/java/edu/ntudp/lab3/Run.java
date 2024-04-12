@@ -7,7 +7,7 @@ import edu.ntudp.lab3.model.Human;
 import java.util.ArrayList;
 
 public class Run {
-    public ArrayList<University> createTypicalUniversity() {
+    public University createTypicalUniversity() {
         PeopleCreator humanCreator = new PeopleCreator();
         ArrayList<Student> students = new ArrayList<>();
         ArrayList<Group> groups = new ArrayList<>();
@@ -31,10 +31,8 @@ public class Run {
         faculties.add(faculty);
 
         Human headOfUniversity = humanCreator.createHeadOfUniversity();
-        University university = new UniversityCreator().createUniversity("НТУ ДП", headOfUniversity, faculties);
-        universities.add(university);
 
-        return universities;
+        return new UniversityCreator().createUniversity("НТУ ДП", headOfUniversity, faculties);
 
     }
 }

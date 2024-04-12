@@ -1,6 +1,7 @@
 package edu.ntudp.lab4;
 
-import edu.ntudp.lab4.model.University;
+import edu.ntudp.lab3.Run;
+import edu.ntudp.lab3.model.University;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
