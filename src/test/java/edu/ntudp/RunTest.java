@@ -1,18 +1,15 @@
 package edu.ntudp;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import edu.ntudp.lab4.JsonManager;
-import edu.ntudp.lab4.Run;
-import edu.ntudp.lab4.model.University;
+import edu.ntudp.lab3.Run;
+import edu.ntudp.lab3.model.University;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class RunTest {
 
@@ -33,7 +30,8 @@ class RunTest {
             fail(e.getMessage());
             throw new RuntimeException(e);
         }
-        assertEquals(jsonManager.toString(university), jsonManager.toString(university2));
+
+        assertEquals(university, university2);
 
     }
 }
